@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import type { Answer } from '../types/quiz.types';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://pongal-backend.onrender.com';
 
 export const fetchQuestions = async () => {
   const res = await axios.get(`${BASE_URL}/question/start`);
