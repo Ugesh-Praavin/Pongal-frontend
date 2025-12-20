@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { fetchQuestions, submitAnswers } from '../api/quiz.api';
 import type { Question, Answer, OptionKey } from '../types/quiz.types';
 import QuestionCard from '../components/QuestionCard';
+import ProgressBar from '../components/ProgressBar';
+import { motion } from 'framer-motion';
 
-export default function QuizPage({ onFinish }: { onFinish: (r: any) => void }) {
+export default function QuizPage({ student, onFinish }: { student: any; onFinish: (r: any) => void }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -20,10 +22,10 @@ export default function QuizPage({ onFinish }: { onFinish: (r: any) => void }) {
     if (index + 1 < questions.length) {
       setIndex(index + 1);
     } else {
-      const result = await submitAnswers([...answers, {
-        questionId: q.id,
-        selectedOption: option,
-      }]);
+      const result = await submitAnswers({
+  student,
+  answers: [...answers, { questionId: q.id, selectedOption: option }],
+});
       onFinish(result);
     }
   };
@@ -35,7 +37,14 @@ export default function QuizPage({ onFinish }: { onFinish: (r: any) => void }) {
       <p className="mb-2 text-sm text-gray-500">
         Question {index + 1} / {questions.length}
       </p>
-      <QuestionCard question={questions[index]} onSelect={handleSelect} />
+      <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.4 }}
+> <QuestionCard question={questions[index]} onSelect={handleSelect} /></motion.div>
+     
+      <ProgressBar current={index + 1} total={questions.length} />
+
     </div>
   );
 }
