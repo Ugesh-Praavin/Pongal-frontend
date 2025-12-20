@@ -9,76 +9,84 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
     const club = recommendations.clubs[0];
     const financeTip = finance?.advice?.[0];
 
-    const shortDescription = persona.description
-      .split('.')
-      .slice(0, 2)
-      .join('.')
-      .trim() + '.';
+    const shortDescription =
+      persona.description
+        .split('.')
+        .slice(0, 2)
+        .join('.')
+        .trim() + '.';
 
     return (
       <div
         ref={ref}
         style={{
-          width: '360px',
-          height: '640px',
+          width: '1080px',
+          height: '1920px',
           backgroundColor: '#ffffff',
-          borderRadius: '28px',
+          borderRadius: '48px',
           overflow: 'hidden',
           fontFamily: 'Poppins, sans-serif',
-          boxShadow: '0 30px 60px rgba(0,0,0,0.25)',
           display: 'flex',
           flexDirection: 'column',
         }}
       >
         {/* HEADER */}
         <div
-           style={{
-    padding: '20px 16px', // reduced
-    background: 'linear-gradient(135deg,#f97316,#fbbf24)',
-    color: '#ffffff',
-    textAlign: 'center',
-  }}
+          style={{
+            padding: '40px 32px',
+            background: 'linear-gradient(135deg,#f97316,#fbbf24)',
+            color: '#ffffff',
+            textAlign: 'center',
+          }}
         >
-          <h1 style={{ fontSize: '20px', fontWeight: 800 }}>
+          <h1 style={{ fontSize: '44px', fontWeight: 800 }}>
             🌾 {persona.title}
           </h1>
-          <p style={{ fontSize: '11px', opacity: 0.95 }}>
+          <p style={{ fontSize: '20px', opacity: 0.95 }}>
             Pongal Tech Persona
           </p>
         </div>
 
-        {/* ID STRIP */}
+        {/* STUDENT INFO */}
         <div
           style={{
             textAlign: 'center',
-            fontSize: '11px',
+            fontSize: '20px',
             fontWeight: 600,
-            padding: '8px',
+            padding: '18px',
             color: '#374151',
-            borderBottom: '1px solid #f3f4f6',
+            borderBottom: '1px solid #e5e7eb',
           }}
         >
           {student.name} • {student.department} • Year {student.year}
         </div>
 
         {/* BODY */}
-        <div style={{ padding: '18px', flex: 1 }}>
+        <div
+          style={{
+            padding: '48px',
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '32px',
+          }}
+        >
+          {/* DESCRIPTION */}
           <p
             style={{
-    textAlign: 'center',
-    fontSize: '12.5px',
-    lineHeight: 1.6,
-    marginBottom: '14px',
-    color: '#4b5563',
-    fontStyle: 'italic',
-  }}
+              textAlign: 'center',
+              fontSize: '26px',
+              lineHeight: 1.6,
+              color: '#4b5563',
+              fontStyle: 'italic',
+            }}
           >
-            "{shortDescription}""
+            “{shortDescription}”
           </p>
 
           {/* STRENGTHS */}
-          <div style={{ textAlign: 'center', marginBottom: '14px' }}>
-            <div style={{ fontSize: '13px', fontWeight: 700 }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '26px', fontWeight: 700 }}>
               💪 Strengths
             </div>
 
@@ -86,51 +94,59 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '6px',
+                gap: '16px',
                 justifyContent: 'center',
-                marginTop: '8px',
+                marginTop: '20px',
               }}
             >
               {strengths.map((s: string) => (
                 <span
-  key={s}
-  style={{
-    background: '#ecfeff',
-    color: '#0369a1',
-    padding: '6px 12px',
-    borderRadius: '999px',
-    fontSize: '11px',
-    fontWeight: 700,
-    letterSpacing: '0.2px',
-  }}
->
-  {s}
-</span>
+                  key={s}
+                  style={{
+                    background: '#ecfeff',
+                    color: '#0369a1',
+                    padding: '14px 24px',
+                    borderRadius: '999px',
+                    fontSize: '20px',
+                    fontWeight: 700,
+                  }}
+                >
+                  {s}
+                </span>
               ))}
             </div>
           </div>
 
-          {/* MINI HIGHLIGHTS */}
-          <MiniCard title="🏛 Centre" value={centre} bg="#fff7ed" />
-          <MiniCard title="🎭 Club" value={club} bg="#f0fdf4" />
+          {/* CENTRE */}
+          <InfoCard
+            title="🏛 Centre"
+            value={centre}
+            bg="#fff7ed"
+          />
+
+          {/* CLUB */}
+          <InfoCard
+            title="🎭 Club"
+            value={club}
+            bg="#f0fdf4"
+          />
 
           {/* FINANCE */}
           {financeTip && (
             <div
-             style={{
-    marginTop: '14px',
-    padding: '14px',
-    background: 'linear-gradient(135deg,#d1fae5,#a7f3d0)',
-    borderRadius: '18px',
-    textAlign: 'center',
-    fontSize: '12px',
-    fontWeight: 700,
-    color: '#065f46',
-  }}
-
+              style={{
+                padding: '28px',
+                background:
+                  'linear-gradient(135deg,#d1fae5,#a7f3d0)',
+                borderRadius: '28px',
+                textAlign: 'center',
+                fontSize: '22px',
+                fontWeight: 700,
+                color: '#065f46',
+              }}
             >
               💰 Smart Money Tip
-              <div style={{ marginTop: '6px', fontWeight: 600 }}>
+              <div style={{ marginTop: '12px', fontWeight: 600 }}>
                 {financeTip}
               </div>
             </div>
@@ -138,18 +154,17 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
         </div>
 
         {/* FOOTER */}
-       <div
-  style={{
-    fontSize: '10px',
-    textAlign: 'center',
-    padding: '10px',
-    color: '#6b7280',
-    borderTop: '1px dashed #e5e7eb',
-  }}
->
-  🌾 Pongal Tech Fest • Your Tech Journey
-</div>
-
+        <div
+          style={{
+            fontSize: '18px',
+            textAlign: 'center',
+            padding: '24px',
+            color: '#6b7280',
+            borderTop: '1px dashed #e5e7eb',
+          }}
+        >
+          🌾 Pongal Tech Fest • Your Tech Journey
+        </div>
       </div>
     );
   }
@@ -157,8 +172,9 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
 
 export default PosterView;
 
-/* Helper */
-function MiniCard({
+/* ---------- Helper Card ---------- */
+
+function InfoCard({
   title,
   value,
   bg,
@@ -173,16 +189,15 @@ function MiniCard({
     <div
       style={{
         background: bg,
-        padding: '10px',
-        borderRadius: '12px',
-        marginTop: '8px',
+        padding: '28px',
+        borderRadius: '28px',
         textAlign: 'center',
-        fontSize: '12px',
+        fontSize: '24px',
         fontWeight: 700,
       }}
     >
       {title}
-      <div style={{ marginTop: '4px', fontWeight: 600 }}>
+      <div style={{ marginTop: '12px', fontWeight: 600 }}>
         {value}
       </div>
     </div>
