@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import type { Answer } from '../types/quiz.types';
+
 
 const BASE_URL = 'https://pongal-backend.onrender.com';
 
