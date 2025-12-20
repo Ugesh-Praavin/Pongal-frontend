@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas';
 import { useRef } from 'react';
-import { posterText } from '../utils/posterText';
+
 import FullResultView from './FullResultView';
 import PosterView from './PosterView';
 
