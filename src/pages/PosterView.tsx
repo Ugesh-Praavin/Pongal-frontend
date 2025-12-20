@@ -10,11 +10,7 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
     const financeTip = finance?.advice?.[0];
 
     const shortDescription =
-      persona.description
-        .split('.')
-        .slice(0, 2)
-        .join('.')
-        .trim() + '.';
+      persona.description.split('.').slice(0, 2).join('.').trim() + '.';
 
     return (
       <div
@@ -23,7 +19,7 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
           width: '1080px',
           height: '1920px',
           backgroundColor: '#ffffff',
-          borderRadius: '48px',
+          borderRadius: '28px',
           overflow: 'hidden',
           fontFamily: 'Poppins, sans-serif',
           display: 'flex',
@@ -33,13 +29,13 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
         {/* HEADER */}
         <div
           style={{
-            padding: '40px 32px',
+            padding: '48px 40px',
             background: 'linear-gradient(135deg,#f97316,#fbbf24)',
             color: '#ffffff',
             textAlign: 'center',
           }}
         >
-          <h1 style={{ fontSize: '44px', fontWeight: 800 }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 800 }}>
             🌾 {persona.title}
           </h1>
           <p style={{ fontSize: '20px', opacity: 0.95 }}>
@@ -47,11 +43,11 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
           </p>
         </div>
 
-        {/* STUDENT INFO */}
+        {/* ID STRIP */}
         <div
           style={{
             textAlign: 'center',
-            fontSize: '20px',
+            fontSize: '24px',
             fontWeight: 600,
             padding: '18px',
             color: '#374151',
@@ -64,20 +60,19 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
         {/* BODY */}
         <div
           style={{
-            padding: '48px',
-            flexGrow: 1,
+            padding: '64px 80px',
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            gap: '32px',
           }}
         >
-          {/* DESCRIPTION */}
           <p
             style={{
               textAlign: 'center',
-              fontSize: '26px',
+              fontSize: '30px',
               lineHeight: 1.6,
-              color: '#4b5563',
+              marginBottom: '48px',
+              color: '#374151',
               fontStyle: 'italic',
             }}
           >
@@ -85,8 +80,8 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
           </p>
 
           {/* STRENGTHS */}
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '26px', fontWeight: 700 }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <div style={{ fontSize: '30px', fontWeight: 700 }}>
               💪 Strengths
             </div>
 
@@ -96,7 +91,7 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
                 flexWrap: 'wrap',
                 gap: '16px',
                 justifyContent: 'center',
-                marginTop: '20px',
+                marginTop: '24px',
               }}
             >
               {strengths.map((s: string) => (
@@ -105,9 +100,9 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
                   style={{
                     background: '#ecfeff',
                     color: '#0369a1',
-                    padding: '14px 24px',
+                    padding: '16px 28px',
                     borderRadius: '999px',
-                    fontSize: '20px',
+                    fontSize: '22px',
                     fontWeight: 700,
                   }}
                 >
@@ -118,29 +113,21 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
           </div>
 
           {/* CENTRE */}
-          <InfoCard
-            title="🏛 Centre"
-            value={centre}
-            bg="#fff7ed"
-          />
+          <MiniCard title="🏛 Centre" value={centre} bg="#fff7ed" />
 
           {/* CLUB */}
-          <InfoCard
-            title="🎭 Club"
-            value={club}
-            bg="#f0fdf4"
-          />
+          <MiniCard title="🎭 Club" value={club} bg="#f0fdf4" />
 
           {/* FINANCE */}
           {financeTip && (
             <div
               style={{
-                padding: '28px',
-                background:
-                  'linear-gradient(135deg,#d1fae5,#a7f3d0)',
+                marginTop: '40px',
+                padding: '32px',
+                background: 'linear-gradient(135deg,#d1fae5,#a7f3d0)',
                 borderRadius: '28px',
                 textAlign: 'center',
-                fontSize: '22px',
+                fontSize: '26px',
                 fontWeight: 700,
                 color: '#065f46',
               }}
@@ -151,14 +138,17 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
               </div>
             </div>
           )}
+
+          {/* FLEX SPACER — THIS IS THE KEY */}
+          <div style={{ flexGrow: 1 }} />
         </div>
 
         {/* FOOTER */}
         <div
           style={{
-            fontSize: '18px',
+            fontSize: '20px',
             textAlign: 'center',
-            padding: '24px',
+            padding: '32px',
             color: '#6b7280',
             borderTop: '1px dashed #e5e7eb',
           }}
@@ -172,9 +162,8 @@ const PosterView = forwardRef<HTMLDivElement, { result: any }>(
 
 export default PosterView;
 
-/* ---------- Helper Card ---------- */
-
-function InfoCard({
+/* Helper */
+function MiniCard({
   title,
   value,
   bg,
@@ -190,9 +179,10 @@ function InfoCard({
       style={{
         background: bg,
         padding: '28px',
-        borderRadius: '28px',
+        borderRadius: '24px',
+        marginTop: '28px',
         textAlign: 'center',
-        fontSize: '24px',
+        fontSize: '26px',
         fontWeight: 700,
       }}
     >
