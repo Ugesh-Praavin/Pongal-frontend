@@ -74,17 +74,17 @@ export default function ResultPage({ result }: { result: any }) {
       <FullResultView result={result} />
 
       {/* ACTION BUTTONS */}
-      <div className="sticky bottom-0 bg-white py-4 flex gap-4 justify-center shadow-inner">
+      <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm py-5 px-4 flex gap-4 justify-center border-t border-gray-200 shadow-xl">
         <button
           onClick={downloadPoster}
-          className="px-5 py-2 bg-green-600 text-white rounded-xl"
+          className="px-8 py-3.5 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 active:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition-all shadow-md text-base min-w-[140px]"
         >
           ⬇️ Download
         </button>
 
         <button
           onClick={sharePoster}
-          className="px-5 py-2 bg-orange-500 text-white rounded-xl"
+          className="px-8 py-3.5 bg-pongal-fire text-white font-bold rounded-xl hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-pongal-fire focus:ring-offset-2 transition-all shadow-md text-base min-w-[140px]"
         >
           📤 Share
         </button>
